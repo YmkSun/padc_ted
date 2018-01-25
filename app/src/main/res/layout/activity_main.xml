@@ -12,30 +12,44 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            style="@style/AppTheme.ToolbarOverflow">
+            android:background="@color/white_full"
+            android:theme="@style/ToolbarOverflow" >
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="55dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_ted_small_logo" />
-
-            </RelativeLayout>
+            <include layout="@layout/view_actionbar_title"/>
 
         </android.support.v7.widget.Toolbar>
 
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tl_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            android:background="@color/primary"
+            app:tabTextColor="@color/gray_full"
+            app:tabSelectedTextColor="@color/accent"
+            app:tabIndicatorColor="@color/accent"
+            />
+
+
+
     </android.support.design.widget.AppBarLayout>
 
+
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager_fragments_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="2dp"
+        />
+
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="50dp"
+        android:id="@+id/fab_main"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
