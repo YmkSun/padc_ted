@@ -1,32 +1,33 @@
 package com.ymksun.dev.ted.activities;
 
 import android.os.Bundle;
+import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ymksun.dev.ted.R;
 import com.ymksun.dev.ted.adapters.MainFragmentPagerAdapter;
+import com.ymksun.dev.ted.delegates.TEDAppDelegate;
+import com.ymksun.dev.ted.fragments.MyTalksFragment;
+import com.ymksun.dev.ted.fragments.PlaylistsFragment;
+import com.ymksun.dev.ted.fragments.PodcastsFragment;
+import com.ymksun.dev.ted.fragments.SupriseMeFragment;
 import com.ymksun.dev.ted.fragments.TalksFragment;
+import com.ymksun.dev.ted.utils.AppConstants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity implements TEDAppDelegate {
+
+
 
     @BindView(R.id.tl_main)
     TabLayout tlMain;
@@ -35,7 +36,10 @@ public class MainActivity extends AppCompatActivity {
     ViewPager vpFragmentMain;
 
     @BindView(R.id.toolbar_main)
-            Toolbar mToolBar;
+    Toolbar mToolBar;
+
+    @BindView(R.id.tv_action_bar_title)
+    TextView tvActionBarTitle;
 
     MainFragmentPagerAdapter mFragmentPagerAdapter;
 
@@ -73,20 +77,27 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void addIconsToTab() {
+
+    }
+
     public void navigateToViewPager() {
-        mFragmentPagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager());
-        mFragmentPagerAdapter.addTab(new TalksFragment(), "");
-        mFragmentPagerAdapter.addTab(new TalksFragment(), "");
-        mFragmentPagerAdapter.addTab(new TalksFragment(), "");
-        mFragmentPagerAdapter.addTab(new TalksFragment(), "");
-        mFragmentPagerAdapter.addTab(new TalksFragment(), "");
+        mFragmentPagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager(), this);
+        mFragmentPagerAdapter.addTab(TalksFragment.newInstance(), "Talks");
+        mFragmentPagerAdapter.addTab(PlaylistsFragment.newInstance(), "Playlists");
+        mFragmentPagerAdapter.addTab(PodcastsFragment.newInstance(), "Podcasts");
+        mFragmentPagerAdapter.addTab(SupriseMeFragment.newInstance(), "Suprise Me");
+        mFragmentPagerAdapter.addTab(MyTalksFragment.newInstance(), "My Talks");
         vpFragmentMain.setAdapter(mFragmentPagerAdapter);
         tlMain.setupWithViewPager(vpFragmentMain);
-        tlMain.getTabAt(0).setIcon(R.drawable.ic_format_list_bulleted_gray_24dp);
-        tlMain.getTabAt(1).setIcon(R.drawable.ic_video_library_gray_24dp);
-        tlMain.getTabAt(2).setIcon(R.drawable.ic_music_note_gray_24dp);
-        tlMain.getTabAt(3).setIcon(R.drawable.ic_lightbulb_outline_gray_24dp);
-        tlMain.getTabAt(4).setIcon(R.drawable.ic_account_circle_gray_24dp);
+        for(int i = 0; i < AppConstants.tabIcons.length; i++) {
+            tlMain.getTabAt(i).setIcon(AppConstants.tabIcons[i]);
+        }
+    }
 
+    @Override
+    public void setActionBarTitle(String title) {
+        Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
+        tvActionBarTitle.setText(title);
     }
 }
