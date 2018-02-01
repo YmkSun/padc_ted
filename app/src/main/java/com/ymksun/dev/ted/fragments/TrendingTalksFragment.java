@@ -13,11 +13,6 @@ import android.view.ViewGroup;
 
 public class TrendingTalksFragment extends Fragment {
 
-    public static TrendingTalksFragment newInstance() {
-        TrendingTalksFragment fragment = new TrendingTalksFragment();
-        return fragment;
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

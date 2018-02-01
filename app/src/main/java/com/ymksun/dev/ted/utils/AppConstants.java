@@ -15,4 +15,5 @@ public class AppConstants {
             R.drawable.ic_lightbulb_outline_gray_24dp,
             R.drawable.ic_account_circle_gray_24dp
     };
+    public static String[] tabTitles = {"Talks", "Playlists", "Podcasts", "Surprise Me", "My Talks"};
 }

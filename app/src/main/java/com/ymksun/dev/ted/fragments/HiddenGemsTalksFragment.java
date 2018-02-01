@@ -13,11 +13,6 @@ import android.view.ViewGroup;
 
 public class HiddenGemsTalksFragment extends Fragment {
 
-    public static HiddenGemsTalksFragment newInstance() {
-        HiddenGemsTalksFragment fragment = new HiddenGemsTalksFragment();
-        return fragment;
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -2,4 +2,6 @@
 <resources>
     <dimen name="action_logo_width">55dp</dimen>
     <dimen name="action_logo_height">30dp</dimen>
+
+    <dimen name="divider_side_margin">5dp</dimen>
 </resources>

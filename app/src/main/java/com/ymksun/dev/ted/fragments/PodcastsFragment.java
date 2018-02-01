@@ -15,11 +15,6 @@ import com.ymksun.dev.ted.delegates.TEDAppDelegate;
 
 public class PodcastsFragment extends Fragment {
 
-    public static PodcastsFragment newInstance() {
-        PodcastsFragment fragment = new PodcastsFragment();
-        return fragment;
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

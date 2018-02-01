@@ -1,8 +1,9 @@
 package com.ymksun.dev.ted.activities;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -18,7 +19,7 @@ import com.ymksun.dev.ted.delegates.TEDAppDelegate;
 import com.ymksun.dev.ted.fragments.MyTalksFragment;
 import com.ymksun.dev.ted.fragments.PlaylistsFragment;
 import com.ymksun.dev.ted.fragments.PodcastsFragment;
-import com.ymksun.dev.ted.fragments.SupriseMeFragment;
+import com.ymksun.dev.ted.fragments.SurpriseMeFragment;
 import com.ymksun.dev.ted.fragments.TalksFragment;
 import com.ymksun.dev.ted.utils.AppConstants;
 
@@ -26,7 +27,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements TEDAppDelegate {
-
 
 
     @BindView(R.id.tl_main)
@@ -53,8 +53,25 @@ public class MainActivity extends BaseActivity implements TEDAppDelegate {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
 
-        navigateToViewPager();
+        setUpFragements();
+        tlMain.setupWithViewPager(vpFragmentMain);
+        setUpTabIcon();
+        setTabToContext(tlMain.getTabAt(0), true);
 
+        tlMain.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(vpFragmentMain) {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                super.onTabSelected(tab);
+                setTabToContext(tab, true);
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                super.onTabUnselected(tab);
+                setTabToContext(tab, false);
+            }
+        });
     }
 
     @Override
@@ -66,33 +83,34 @@ public class MainActivity extends BaseActivity implements TEDAppDelegate {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-    public void addIconsToTab() {
-
-    }
-
-    public void navigateToViewPager() {
-        mFragmentPagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager(), this);
-        mFragmentPagerAdapter.addTab(TalksFragment.newInstance(), "Talks");
-        mFragmentPagerAdapter.addTab(PlaylistsFragment.newInstance(), "Playlists");
-        mFragmentPagerAdapter.addTab(PodcastsFragment.newInstance(), "Podcasts");
-        mFragmentPagerAdapter.addTab(SupriseMeFragment.newInstance(), "Suprise Me");
-        mFragmentPagerAdapter.addTab(MyTalksFragment.newInstance(), "My Talks");
-        vpFragmentMain.setAdapter(mFragmentPagerAdapter);
-        tlMain.setupWithViewPager(vpFragmentMain);
-        for(int i = 0; i < AppConstants.tabIcons.length; i++) {
+    public void setUpTabIcon() {
+        for (int i = 0; i < AppConstants.tabIcons.length; i++) {
             tlMain.getTabAt(i).setIcon(AppConstants.tabIcons[i]);
         }
+    }
+
+    public void setUpFragements() {
+        mFragmentPagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager(), this);
+        mFragmentPagerAdapter.addTab(new TalksFragment(), "");
+        mFragmentPagerAdapter.addTab(new PlaylistsFragment(), "");
+        mFragmentPagerAdapter.addTab(new PodcastsFragment(), "");
+        mFragmentPagerAdapter.addTab(new SurpriseMeFragment(), "");
+        mFragmentPagerAdapter.addTab(new MyTalksFragment(), "");
+        vpFragmentMain.setAdapter(mFragmentPagerAdapter);
+    }
+
+    public void setTabToContext(TabLayout.Tab tab, boolean isActive) {
+        int tabIconColor = ContextCompat.getColor(getApplicationContext(), isActive ? R.color.accent : R.color.gray_full);
+        tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
+        if (isActive)
+            tvActionBarTitle.setText(AppConstants.tabTitles[tab.getPosition()]);
     }
 
     @Override
@@ -100,4 +118,6 @@ public class MainActivity extends BaseActivity implements TEDAppDelegate {
         Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
         tvActionBarTitle.setText(title);
     }
+
+
 }

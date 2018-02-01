@@ -15,11 +15,6 @@ import com.ymksun.dev.ted.delegates.TEDAppDelegate;
 
 public class PlaylistsFragment extends Fragment {
 
-    public static PlaylistsFragment newInstance() {
-        PlaylistsFragment fragment = new PlaylistsFragment();
-        return fragment;
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

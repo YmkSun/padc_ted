@@ -13,12 +13,7 @@ import com.ymksun.dev.ted.delegates.TEDAppDelegate;
  * Created by yemyokyaw on 1/26/18.
  */
 
-public class SupriseMeFragment extends Fragment {
-
-    public static SupriseMeFragment newInstance() {
-        SupriseMeFragment fragment = new SupriseMeFragment();
-        return fragment;
-    }
+public class SurpriseMeFragment extends Fragment {
 
     @Nullable
     @Override
