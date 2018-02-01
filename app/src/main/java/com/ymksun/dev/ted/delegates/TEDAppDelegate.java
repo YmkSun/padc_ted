@@ -6,6 +6,4 @@ package com.ymksun.dev.ted.delegates;
 
 public interface TEDAppDelegate {
 
-    void setActionBarTitle(String title);
-
 }

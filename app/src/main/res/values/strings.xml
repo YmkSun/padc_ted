@@ -4,7 +4,7 @@
     <string name="title_talks">Talks</string>
     <string name="title_playlists">Playlists</string>
     <string name="title_podcasts">Podcasts</string>
-    <string name="title_suprise_me">Suprise Me</string>
+    <string name="title_suprise_me">Surprise Me</string>
     <string name="title_my_talks">My talks</string>
 
     <string name="frag_title_newest">Newest</string>
@@ -16,4 +16,7 @@
     <string name="action_privacy_policy">Privacy Policy</string>
     <string name="action_feedback">Feedback</string>
     <string name="action_log_in">Log in</string>
+
+    <string name="msg_generic_no_data">No Data to Display</string>
+    <string name="lbl_refresh">Refresh</string>
 </resources>

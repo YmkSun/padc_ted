@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity implements TEDAppDelegate {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
 
-        setUpFragements();
+        setUpFragments();
         tlMain.setupWithViewPager(vpFragmentMain);
         setUpTabIcon();
         setTabToContext(tlMain.getTabAt(0), true);
@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity implements TEDAppDelegate {
         }
     }
 
-    public void setUpFragements() {
+    public void setUpFragments() {
         mFragmentPagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager(), this);
         mFragmentPagerAdapter.addTab(new TalksFragment(), "");
         mFragmentPagerAdapter.addTab(new PlaylistsFragment(), "");
@@ -112,12 +112,5 @@ public class MainActivity extends BaseActivity implements TEDAppDelegate {
         if (isActive)
             tvActionBarTitle.setText(AppConstants.tabTitles[tab.getPosition()]);
     }
-
-    @Override
-    public void setActionBarTitle(String title) {
-        Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
-        tvActionBarTitle.setText(title);
-    }
-
 
 }

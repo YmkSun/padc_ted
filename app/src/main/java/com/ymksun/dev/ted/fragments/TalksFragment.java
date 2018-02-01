@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.ymksun.dev.ted.R;
@@ -31,6 +32,9 @@ public class TalksFragment extends Fragment implements View.OnClickListener {
 
     @BindView(R.id.tv_frag_hidden_gems)
     TextView tvHiddenGemsTalks;
+
+    @BindView(R.id.fl_frag_talk_child)
+    FrameLayout flTalkViews;
 
     @Nullable
     @Override
